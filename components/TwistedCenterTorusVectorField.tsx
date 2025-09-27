@@ -3,8 +3,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 
 const TwistedCenterTorusVectorField = () => {
-  const canvasRef = useRef(null);
-  const animationFrameRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationFrameRef = useRef<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [showVectorField, setShowVectorField] = useState(true);
   const [showProbabilityField, setShowProbabilityField] = useState(true);
@@ -16,6 +16,7 @@ const TwistedCenterTorusVectorField = () => {
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
     canvas.width = 800;
     canvas.height = 600;
     
@@ -44,11 +45,11 @@ const TwistedCenterTorusVectorField = () => {
       
       // Flow parameters
       flow_speed: 0.02,
-      trail: []
+      trail: [] as { x: number; y: number; twist: number; z: number }[]
     };
     
     // Vector field sample points
-    const fieldArrows = [];
+    const fieldArrows: { phi: number; theta: number }[] = [];
     for (let phi = 0; phi < 2 * Math.PI; phi += Math.PI / 4) {
       for (let theta = 0; theta < 2 * Math.PI; theta += Math.PI / 3) {
         fieldArrows.push({ phi, theta });
@@ -57,7 +58,7 @@ const TwistedCenterTorusVectorField = () => {
     
     let time = 0;
     
-    const centerTwistedTorusTo2D = (phi, theta, r_minor, twist = centerTwist) => {
+    const centerTwistedTorusTo2D = (phi: number, theta: number, r_minor: number, twist: number = centerTwist) => {
       // 3D torus with center ring twist (creates 3D Möbius topology)
       // The twist is applied to the center ring position, not the tube orientation
       
@@ -97,7 +98,7 @@ const TwistedCenterTorusVectorField = () => {
       };
     };
     
-    const calculateCenterTwistedProbability = (phi, theta, r_minor, centerPhi, centerTheta, centerR) => {
+    const calculateCenterTwistedProbability = (phi: number, theta: number, r_minor: number, centerPhi: number, centerTheta: number, centerR: number) => {
       // Probability on center-twisted torus (3D Möbius)
       
       // Account for the 3D Möbius topology - points that are close in 3D space
@@ -132,6 +133,7 @@ const TwistedCenterTorusVectorField = () => {
     };
     
     const drawCenterTwistedTorus = () => {
+      if (!ctx) return;
       // Draw the center-twisted torus wireframe
       ctx.strokeStyle = '#444477';
       ctx.lineWidth = 1;

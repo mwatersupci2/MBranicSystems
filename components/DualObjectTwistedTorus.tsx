@@ -3,8 +3,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 
 const DualMobiusTori = () => {
-  const canvasRef = useRef(null);
-  const animRef      = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animRef      = useRef<number | null>(null);
   const [play, setPlay] = useState(true);
 
   /* ----------  LEFT (blue) torus  ---------- */
@@ -30,7 +30,9 @@ const DualMobiusTori = () => {
   /* ---------------------------------------------------------- */
   useEffect(() => {
     const cv  = canvasRef.current;
+    if (!cv) return;
     const ctx = cv.getContext('2d');
+    if (!ctx) return;
     cv.width = 900; cv.height = 600;
 
     const g = {              // global drawing constants
@@ -43,7 +45,7 @@ const DualMobiusTori = () => {
     };
 
     /* ------------  build one torus + object descriptor  ------------ */
-    const makeTorus = (side) => ({
+    const makeTorus = (side: 'L' | 'R') => ({
       side,
       centreX: side==='L' ? 450 - g.sep/2 : 450 + g.sep/2,
       twist: side==='L' ? twistL : twistR,
@@ -71,7 +73,7 @@ const DualMobiusTori = () => {
     let time = 0;
 
     /* ------------  torus 3D -> 2D projection  ------------ */
-    const torusTo2D = (phi, theta, rMinor, torus) => {
+    const torusTo2D = (phi: number, theta: number, rMinor: number, torus: any) => {
       const twistAngle = torus.twist * phi / 2;
       
       // Center ring position with twist
@@ -110,7 +112,7 @@ const DualMobiusTori = () => {
     };
 
     /* ------------  probability calculation  ------------ */
-    const calcProb = (phi, theta, rMinor, centerPhi, centerTheta, centerR, torus) => {
+    const calcProb = (phi: number, theta: number, rMinor: number, centerPhi: number, centerTheta: number, centerR: number, torus: any) => {
       const pos1 = torusTo2D(phi, theta, rMinor, torus);
       const pos2 = torusTo2D(centerPhi, centerTheta, centerR, torus);
       
@@ -142,7 +144,7 @@ const DualMobiusTori = () => {
     };
 
     /* ------------  draw 3D torus as true 3D object  ------------ */
-    const drawTorus = (torus) => {
+    const drawTorus = (torus: any) => {
       // 3D rendering parameters
       const resolution = 20;
       const cameraDistance = 400;
@@ -297,7 +299,7 @@ const DualMobiusTori = () => {
     };
 
     /* ------------  draw 3D probability field  ------------ */
-    const drawProbField = (torus) => {
+    const drawProbField = (torus: any) => {
       if ((torus.side === 'L' && !showProbL) || (torus.side === 'R' && !showProbR)) return;
       
       ctx.globalAlpha = 0.2;
@@ -337,7 +339,7 @@ const DualMobiusTori = () => {
     };
 
     /* ------------  draw vector field  ------------ */
-    const drawVecField = (torus) => {
+    const drawVecField = (torus: any) => {
       if ((torus.side === 'L' && !showVecL) || (torus.side === 'R' && !showVecR)) return;
       
       ctx.lineWidth = 1.5;
@@ -436,7 +438,7 @@ const DualMobiusTori = () => {
     };
 
     /* ------------  update point energy object  ------------ */
-    const updateObj = (torus) => {
+    const updateObj = (torus: any) => {
       const obj = torus.obj;
       const dir = torus.side === 'L' ? dirL : dirR;
       const speed = torus.side === 'L' ? speedL : speedR;
@@ -475,7 +477,7 @@ const DualMobiusTori = () => {
     };
 
     /* ------------  draw point energy object with 3D vector  ------------ */
-    const drawObj = (torus) => {
+    const drawObj = (torus: any) => {
       const currentState = updateObj(torus);
       const pos = torusTo2D(currentState.phi, currentState.theta, currentState.r, torus);
       
