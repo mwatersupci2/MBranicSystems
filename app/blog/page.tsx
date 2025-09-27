@@ -17,7 +17,7 @@ export default function BlogPage() {
           <div className="mb-8">
             <Image
               src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/M1"
-              alt="M1 Möbius configuration - artistic rendition of the monopole branic vector"
+              alt=" Artistic rendition of the monopole branic vector"
               width={600}
               height={600}
               className="rounded-lg mx-auto"
@@ -109,19 +109,19 @@ export default function BlogPage() {
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-start">
                       <span className="text-blue-400 mr-2">•</span>
-                      <span><strong>Monopole:</strong> Single point-energy particle</span>
+                      <span><strong>Monopole:</strong> Single point-energy particle with a simple loop vector. With the point energys inharent wobble or vibration the loop gives the vector a probabiltiy density field. gradiant we see as a torus shell a.k.a a donut.</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-red-400 mr-2">•</span>
-                      <span><strong>Dipole:</strong> Paired particles with opposite spin</span>
+                      <span><strong>Dipole:</strong> Vector has a twist causeing a mobius strip path for the loop </span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-green-400 mr-2">•</span>
-                      <span><strong>Möbius Twist:</strong> Creates attraction/repulsion zones</span>
+                      <span><strong>Möbius Twist:</strong> The dipole path creates attraction/repulsion zones however both are the result of collisions. Attraction is simply repulsion that caused a backwards spin causing a nullification effect.</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-yellow-400 mr-2">•</span>
-                      <span><strong>Probability Field:</strong> 3D space of possible locations</span>
+                      <span><strong>Probability Field:</strong> 3D space of possible locations: Torus, Mobius, Knot and any half steps in between that are shown to be stable</span>
                     </li>
                   </ul>
                 </div>
@@ -183,7 +183,7 @@ export default function BlogPage() {
                 <div>
                   <h4 className="text-xl font-semibold mb-3 text-blue-400">1. Self-Contained Dynamics</h4>
                   <div className="space-y-2 text-gray-300">
-                    <p>✅ <strong>Spindles are emitted from internal rotation</strong> — not assumed as separate fields or particles.</p>
+                    <p>✅ <strong>Spindles are emitted from internal rotation</strong> — not assumed as separate fields or particles. The spindles are not physical but represent the point-energies vector field paths. These spindles are like common game trails animals use. They just form naturally based on the point-energies inharent factors.</p>
                     <p>✅ <strong>Loop motion is self-orbiting, with an offset center</strong> — this explains the torus geometry and internal center point.</p>
                   </div>
                 </div>
