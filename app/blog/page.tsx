@@ -23,7 +23,7 @@ export default function BlogPage() {
               className="rounded-lg mx-auto"
             />
             <p className="text-center text-sm text-gray-400 mt-2">
-              M1 Möbius Configuration - Artistic rendition of the monopole branic vector
+              Artistic rendition of the monopole branic vector
             </p>
           </div>
 
