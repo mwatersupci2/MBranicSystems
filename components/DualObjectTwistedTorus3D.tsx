@@ -41,7 +41,7 @@ const DualMobiusTori3D = () => {
     viewRot: viewRotation * Math.PI / 180
   };
 
-  // Create 3D torus geometry with Möbius twist
+  // Create true 3D Möbius torus geometry
   const createMobiusTorusGeometry = (twist: number, resolution: number = 32) => {
     const geometry = new THREE.BufferGeometry();
     const vertices: number[] = [];
@@ -52,12 +52,14 @@ const DualMobiusTori3D = () => {
       for (let theta = 0; theta < 2 * Math.PI; theta += 2 * Math.PI / resolution) {
         const twistAngle = twist * phi / 2;
         
-        // Center ring position with twist
+        // True 3D Möbius torus coordinates
+        // Center ring in 3D space with twist
         const centerX = g.R * Math.cos(phi);
         const centerY = g.R * Math.sin(phi) * Math.cos(twistAngle);
         const centerZ = g.R * Math.sin(phi) * Math.sin(twistAngle);
         
-        // Tube position relative to center
+        // Tube cross-section with proper 3D orientation
+        // The tube follows the twisted center ring
         const tubeX = g.r * Math.cos(theta);
         const tubeY = g.r * Math.sin(theta) * Math.cos(twistAngle);
         const tubeZ = g.r * Math.sin(theta) * Math.sin(twistAngle);
@@ -69,13 +71,13 @@ const DualMobiusTori3D = () => {
         
         vertices.push(x3d, y3d, z3d);
         
-        // Calculate normal for lighting
+        // Calculate proper surface normal
         const normal = new THREE.Vector3(x3d - centerX, y3d - centerY, z3d - centerZ).normalize();
         normals.push(normal.x, normal.y, normal.z);
       }
     }
 
-    // Create faces
+    // Create faces with proper winding
     for (let i = 0; i < resolution; i++) {
       for (let j = 0; j < resolution; j++) {
         const a = i * (resolution + 1) + j;
@@ -83,7 +85,7 @@ const DualMobiusTori3D = () => {
         const c = (i + 1) * (resolution + 1) + j;
         const d = c + 1;
 
-        // Two triangles per quad
+        // Two triangles per quad with proper orientation
         indices.push(a, b, c);
         indices.push(b, d, c);
       }
@@ -200,14 +202,22 @@ const DualMobiusTori3D = () => {
     mountRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
+    // Enhanced lighting for 3D effect
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.3);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(50, 50, 100);
-    directionalLight.castShadow = true;
-    scene.add(directionalLight);
+    const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.6);
+    directionalLight1.position.set(100, 100, 100);
+    directionalLight1.castShadow = true;
+    scene.add(directionalLight1);
+
+    const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
+    directionalLight2.position.set(-100, -100, 100);
+    scene.add(directionalLight2);
+
+    const pointLight = new THREE.PointLight(0xffffff, 0.5, 500);
+    pointLight.position.set(0, 0, 200);
+    scene.add(pointLight);
 
     // Create tori
     const leftTorus = {
@@ -248,26 +258,32 @@ const DualMobiusTori3D = () => {
     const leftGeometry = createMobiusTorusGeometry(twistL);
     const rightGeometry = createMobiusTorusGeometry(twistR);
 
-    // Create materials
+    // Create materials with solid surfaces
     const leftMaterial = new THREE.MeshLambertMaterial({ 
       color: 0x4488ff, 
       transparent: true, 
-      opacity: 0.3,
-      wireframe: true
+      opacity: 0.7,
+      side: THREE.DoubleSide
     });
     const rightMaterial = new THREE.MeshLambertMaterial({ 
       color: 0xff4444, 
       transparent: true, 
-      opacity: 0.3,
-      wireframe: true
+      opacity: 0.7,
+      side: THREE.DoubleSide
     });
 
-    // Create meshes
+    // Create meshes with proper 3D positioning
     const leftMesh = new THREE.Mesh(leftGeometry, leftMaterial);
     const rightMesh = new THREE.Mesh(rightGeometry, rightMaterial);
     
     leftMesh.position.set(-g.sep/2, 0, 0);
     rightMesh.position.set(g.sep/2, 0, 0);
+    
+    // Enable shadows for 3D effect
+    leftMesh.castShadow = true;
+    leftMesh.receiveShadow = true;
+    rightMesh.castShadow = true;
+    rightMesh.receiveShadow = true;
     
     scene.add(leftMesh);
     scene.add(rightMesh);
