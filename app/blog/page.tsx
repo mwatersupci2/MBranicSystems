@@ -16,14 +16,14 @@ export default function BlogPage() {
 
           <div className="mb-8">
             <Image
-              src="/images/monopole-branic-vector.jpg"
-              alt="Artistic approximation of a monopole branic vector showing a luminous circular object with radiating filaments"
+              src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/M1"
+              alt="M1 Möbius configuration - artistic rendition of the monopole branic vector"
               width={600}
               height={600}
               className="rounded-lg mx-auto"
             />
             <p className="text-center text-sm text-gray-400 mt-2">
-              Artistic approximation of a monopole branic vector
+              M1 Möbius Configuration - Artistic rendition of the monopole branic vector
             </p>
           </div>
 
@@ -41,20 +41,6 @@ export default function BlogPage() {
                   This combined vector is not unlike an electron's probability density cloud which (See second Image, uncertainty principle aka the cat, citation Chem.Libretexts.org) is probabilistic where you cannot determine its exact coordinates without observations and measuring it changes the location. As you get to the inner and outer edges the probability of collision diminishes allowing for a type of inverse square law comparable to gravity's mathematics.
                 </p>
 
-                {/* Right Panel - M1 Image */}
-                <div className="float-right ml-6 mb-6 w-64 md:w-80">
-                  <Image
-                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/M1"
-                    alt="M1 Möbius configuration showing twisted torus geometry"
-                    width={320}
-                    height={320}
-                    className="rounded-lg shadow-lg"
-                  />
-                  <p className="text-center text-sm text-gray-400 mt-2 italic">
-                    M1 Möbius Configuration<br/>
-                    <span className="text-xs">Twisted torus geometry</span>
-                  </p>
-                </div>
 
                 <p>
                   When two of these objects are within each other's torus rings of influence then what you get is a probability gradient of collisions which allows for the emergence of "repulsion". So that repulsion need not be a "magical field" but the interaction of the point-energies collisions. In this way, only a 1-dimensional point-energy is required to demonstrate the emergence of a 3 dimensional field effect which can interact in a gradient with others of its kind.
