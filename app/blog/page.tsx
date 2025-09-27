@@ -64,6 +64,69 @@ export default function BlogPage() {
               The primary assumption is that repulsion is 2/3rds more common than attraction otherwise the universe would become a solid block of point energy. And yet the attraction is what provides the larger systems emergent cohesions by creating nullification zones within the repulsion interactions.
             </p>
 
+            <div className="my-8">
+              <h3 className="text-2xl font-bold mb-6 text-center">Additional Theoretical Visualizations</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div className="text-center">
+                  <Image
+                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/Monopole.png"
+                    alt="Monopole branic vector visualization"
+                    width={400}
+                    height={400}
+                    className="rounded-lg mx-auto mb-4"
+                  />
+                  <p className="text-sm text-gray-400">Monopole Configuration</p>
+                </div>
+                
+                <div className="text-center">
+                  <Image
+                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/Dipole.png"
+                    alt="Dipole branic vector visualization"
+                    width={400}
+                    height={400}
+                    className="rounded-lg mx-auto mb-4"
+                  />
+                  <p className="text-sm text-gray-400">Dipole Configuration</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div className="text-center">
+                  <Image
+                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/Knot.png"
+                    alt="Knot topology in branic vector field"
+                    width={400}
+                    height={400}
+                    className="rounded-lg mx-auto mb-4"
+                  />
+                  <p className="text-sm text-gray-400">Knot Topology</p>
+                </div>
+                
+                <div className="text-center">
+                  <Image
+                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/M1"
+                    alt="M1 Möbius configuration"
+                    width={400}
+                    height={400}
+                    className="rounded-lg mx-auto mb-4"
+                  />
+                  <p className="text-sm text-gray-400">M1 Möbius Configuration</p>
+                </div>
+              </div>
+
+              <div className="text-center mb-8">
+                <Image
+                  src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/M2"
+                  alt="M2 Möbius configuration"
+                  width={400}
+                  height={400}
+                  className="rounded-lg mx-auto mb-4"
+                />
+                <p className="text-sm text-gray-400">M2 Möbius Configuration</p>
+              </div>
+            </div>
+
             <p className="text-gray-300 italic">
               I don't know, it's a working postulate. Also kinda looks like a sand dollar. lol O_o The hairs should have more spiral spin to it and trail around a ways before snapping back as there's balancing forces between the centrifugal force and the vibration of the point energy, but I couldn't get the A.I. to paint it exactly how I see it. This of course is all theoretical musings and I can play around with the parameters to see what works.
             </p>
