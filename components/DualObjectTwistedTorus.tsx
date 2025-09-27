@@ -143,12 +143,12 @@ const DualMobiusTori = () => {
       return prob;
     };
 
-    /* ------------  draw 3D torus as true 3D object  ------------ */
+    /* ------------  draw 3D torus with visible grid and solid surface  ------------ */
     const drawTorus = (torus: any) => {
       // 3D rendering parameters
-      const resolution = 20;
+      const resolution = 24;
       const cameraDistance = 400;
-      const fov = 60; // field of view in degrees
+      const fov = 60;
       
       // Generate 3D mesh points
       const mesh = [];
@@ -223,7 +223,7 @@ const DualMobiusTori = () => {
       // Sort triangles by depth (back to front)
       triangles.sort((a, b) => b.avgZ - a.avgZ);
       
-      // Draw triangles with 3D shading
+      // Draw solid surface with 3D shading
       triangles.forEach(triangle => {
         const [p1, p2, p3] = triangle.points;
         
@@ -249,7 +249,7 @@ const DualMobiusTori = () => {
         const dot = Math.max(0, normal.x * lightDir.x + normal.y * lightDir.y + normal.z * lightDir.z);
         
         // Depth-based shading
-        const depthFactor = Math.max(0.2, (triangle.avgZ + 200) / 400);
+        const depthFactor = Math.max(0.3, (triangle.avgZ + 200) / 400);
         const intensity = dot * depthFactor;
         
         // Color based on torus side
@@ -263,24 +263,56 @@ const DualMobiusTori = () => {
           b: Math.floor(baseColor.b * intensity)
         };
         
-        // Draw triangle with 3D appearance
-        ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, 0.8)`;
+        // Draw solid triangle
+        ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, 0.9)`;
         ctx.beginPath();
         ctx.moveTo(p1.x, p1.y);
         ctx.lineTo(p2.x, p2.y);
         ctx.lineTo(p3.x, p3.y);
         ctx.closePath();
         ctx.fill();
-        
-        // Draw triangle outline for 3D structure
-        ctx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, 1.0)`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
       });
       
-      // Draw center ring with 3D perspective
+      // Draw visible grid lines for 3D structure
+      ctx.strokeStyle = torus.side === 'L' ? '#2244aa' : '#aa2244';
+      ctx.lineWidth = 1;
+      ctx.globalAlpha = 0.6;
+      
+      // Draw phi lines (major circles)
+      for (let i = 0; i < mesh.length; i += 2) {
+        ctx.beginPath();
+        let first = true;
+        for (let j = 0; j < mesh[i].length; j++) {
+          const point = mesh[i][j];
+          if (first) {
+            ctx.moveTo(point.x, point.y);
+            first = false;
+          } else {
+            ctx.lineTo(point.x, point.y);
+          }
+        }
+        ctx.stroke();
+      }
+      
+      // Draw theta lines (minor circles)
+      for (let j = 0; j < mesh[0].length; j += 2) {
+        ctx.beginPath();
+        let first = true;
+        for (let i = 0; i < mesh.length; i++) {
+          const point = mesh[i][j];
+          if (first) {
+            ctx.moveTo(point.x, point.y);
+            first = false;
+          } else {
+            ctx.lineTo(point.x, point.y);
+          }
+        }
+        ctx.stroke();
+      }
+      
+      // Draw center ring with twist
       ctx.strokeStyle = torus.cCol;
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 3;
       ctx.globalAlpha = 0.9;
       ctx.beginPath();
       let first = true;
