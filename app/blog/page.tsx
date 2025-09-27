@@ -26,114 +26,129 @@ export default function BlogPage() {
             </p>
           </div>
 
-          <div className="space-y-6 text-lg leading-relaxed">
-            <p>
-              Despite the ridicule of some, this (first image) is an artistic approximation of a monopole branic vector in my model. The center ring is the most probable place you'd find the 1D point-energy particle while the hair-like paths are vectors along which its vibrations allow it to be located if you were to freeze frame at any given point.
-            </p>
-
-            <p>
-              This combined vector is not unlike an electron's probability density cloud which (See second Image, uncertainty principle aka the cat, citation Chem.Libretexts.org) is probabilistic where you cannot determine its exact coordinates without observations and measuring it changes the location. As you get to the inner and outer edges the probability of collision diminishes allowing for a type of inverse square law comparable to gravity's mathematics.
-            </p>
-
-            <div className="mb-8">
-              <Image
-                src="/images/electron-probability-orbitals.jpg"
-                alt="Scientific diagram showing electron probability distributions for 1s, 2s, and 3s atomic orbitals"
-                width={600}
-                height={400}
-                className="rounded-lg mx-auto"
-              />
-              <p className="text-center text-sm text-gray-400 mt-2">
-                Electron probability distributions for 1s, 2s, and 3s atomic orbitals
-              </p>
-            </div>
-
-            <p>
-              When two of these objects are within each other's torus rings of influence then what you get is a probability gradient of collisions which allows for the emergence of "repulsion". So that repulsion need not be a "magical field" but the interaction of the point-energies collisions. In this way, only a 1-dimensional point-energy is required to demonstrate the emergence of a 3 dimensional field effect which can interact in a gradient with others of its kind.
-            </p>
-
-            <p>
-              Rules of spin and reverse spin for the ring are preserved, meaning a monopole can have an anti-monopole where their interactions nullify each other through collisions having their spin summations opposite. This would be the basis of a host of exotic effects I have not explored yet.
-            </p>
-
-            <p>
-              However in the rudimentary emergent system, if we take the torus and give it a center twist where the vector becomes a Möbius strip instead of a loop then what you end up with is at some points in the Möbius field you have normal interactions (repulsion) and when it flips around and inverts you have anti-normal collisions (attraction).
-            </p>
-
-            <p>
-              The primary assumption is that repulsion is 2/3rds more common than attraction otherwise the universe would become a solid block of point energy. And yet the attraction is what provides the larger systems emergent cohesions by creating nullification zones within the repulsion interactions.
-            </p>
-
-            <div className="my-8">
-              <h3 className="text-2xl font-bold mb-6 text-center">Additional Theoretical Visualizations</h3>
+          <div className="relative">
+            {/* Newspaper/Magazine Layout */}
+            <div className="grid grid-cols-12 gap-6 text-lg leading-relaxed">
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div className="text-center">
-                  <Image
-                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/Monopole.png"
-                    alt="Monopole branic vector visualization"
-                    width={400}
-                    height={400}
-                    className="rounded-lg mx-auto mb-4"
-                  />
-                  <p className="text-sm text-gray-400">Monopole Configuration</p>
-                </div>
-                
-                <div className="text-center">
-                  <Image
-                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/Dipole.png"
-                    alt="Dipole branic vector visualization"
-                    width={400}
-                    height={400}
-                    className="rounded-lg mx-auto mb-4"
-                  />
-                  <p className="text-sm text-gray-400">Dipole Configuration</p>
-                </div>
-              </div>
+              {/* Left Column - Main Text */}
+              <div className="col-span-12 md:col-span-7 space-y-6">
+                <p>
+                  Despite the ridicule of some, this (first image) is an artistic approximation of a monopole branic vector in my model. The center ring is the most probable place you'd find the 1D point-energy particle while the hair-like paths are vectors along which its vibrations allow it to be located if you were to freeze frame at any given point.
+                </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div className="text-center">
-                  <Image
-                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/Knot.png"
-                    alt="Knot topology in branic vector field"
-                    width={400}
-                    height={400}
-                    className="rounded-lg mx-auto mb-4"
-                  />
-                  <p className="text-sm text-gray-400">Knot Topology</p>
-                </div>
-                
-                <div className="text-center">
+                <p>
+                  This combined vector is not unlike an electron's probability density cloud which (See second Image, uncertainty principle aka the cat, citation Chem.Libretexts.org) is probabilistic where you cannot determine its exact coordinates without observations and measuring it changes the location. As you get to the inner and outer edges the probability of collision diminishes allowing for a type of inverse square law comparable to gravity's mathematics.
+                </p>
+
+                {/* Right Panel - M1 Image */}
+                <div className="float-right ml-6 mb-6 w-64 md:w-80">
                   <Image
                     src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/M1"
-                    alt="M1 Möbius configuration"
-                    width={400}
-                    height={400}
-                    className="rounded-lg mx-auto mb-4"
+                    alt="M1 Möbius configuration showing twisted torus geometry"
+                    width={320}
+                    height={320}
+                    className="rounded-lg shadow-lg"
                   />
-                  <p className="text-sm text-gray-400">M1 Möbius Configuration</p>
+                  <p className="text-center text-sm text-gray-400 mt-2 italic">
+                    M1 Möbius Configuration<br/>
+                    <span className="text-xs">Twisted torus geometry</span>
+                  </p>
+                </div>
+
+                <p>
+                  When two of these objects are within each other's torus rings of influence then what you get is a probability gradient of collisions which allows for the emergence of "repulsion". So that repulsion need not be a "magical field" but the interaction of the point-energies collisions. In this way, only a 1-dimensional point-energy is required to demonstrate the emergence of a 3 dimensional field effect which can interact in a gradient with others of its kind.
+                </p>
+
+                <p>
+                  Rules of spin and reverse spin for the ring are preserved, meaning a monopole can have an anti-monopole where their interactions nullify each other through collisions having their spin summations opposite. This would be the basis of a host of exotic effects I have not explored yet.
+                </p>
+
+                <p>
+                  However in the rudimentary emergent system, if we take the torus and give it a center twist where the vector becomes a Möbius strip instead of a loop then what you end up with is at some points in the Möbius field you have normal interactions (repulsion) and when it flips around and inverts you have anti-normal collisions (attraction).
+                </p>
+
+                {/* Left Panel - M2 Image */}
+                <div className="float-left mr-6 mb-6 w-64 md:w-80">
+                  <Image
+                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/M2"
+                    alt="M2 Möbius configuration showing alternative twisted geometry"
+                    width={320}
+                    height={320}
+                    className="rounded-lg shadow-lg"
+                  />
+                  <p className="text-center text-sm text-gray-400 mt-2 italic">
+                    M2 Möbius Configuration<br/>
+                    <span className="text-xs">Alternative twisted geometry</span>
+                  </p>
+                </div>
+
+                <p>
+                  The primary assumption is that repulsion is 2/3rds more common than attraction otherwise the universe would become a solid block of point energy. And yet the attraction is what provides the larger systems emergent cohesions by creating nullification zones within the repulsion interactions.
+                </p>
+
+                <p className="text-gray-300 italic">
+                  I don't know, it's a working postulate. Also kinda looks like a sand dollar. lol O_o The hairs should have more spiral spin to it and trail around a ways before snapping back as there's balancing forces between the centrifugal force and the vibration of the point energy, but I couldn't get the A.I. to paint it exactly how I see it. This of course is all theoretical musings and I can play around with the parameters to see what works.
+                </p>
+
+                <p className="text-gray-300 italic">
+                  It's like building model trains but instead of trains it's trying... nevermind... lol O_o
+                </p>
+              </div>
+
+              {/* Right Column - Sidebar */}
+              <div className="col-span-12 md:col-span-5 space-y-6">
+                <div className="bg-gray-800 p-6 rounded-lg">
+                  <h4 className="text-xl font-bold mb-4 text-blue-400">Electron Probability Reference</h4>
+                  <Image
+                    src="/images/electron-probability-orbitals.jpg"
+                    alt="Scientific diagram showing electron probability distributions for 1s, 2s, and 3s atomic orbitals"
+                    width={400}
+                    height={300}
+                    className="rounded-lg mb-4"
+                  />
+                  <p className="text-sm text-gray-400 text-center mb-4">
+                    Electron probability distributions for 1s, 2s, and 3s atomic orbitals<br/>
+                    <span className="text-xs">(Chem.Libretexts.org)</span>
+                  </p>
+                  <p className="text-sm text-gray-300">
+                    This reference shows how quantum mechanics describes electron probability clouds, 
+                    similar to our branic vector model where the point-energy particle exists in 
+                    a probability field rather than a fixed location.
+                  </p>
+                </div>
+
+                <div className="bg-gray-800 p-6 rounded-lg">
+                  <h4 className="text-xl font-bold mb-4 text-purple-400">Key Concepts</h4>
+                  <ul className="space-y-3 text-sm">
+                    <li className="flex items-start">
+                      <span className="text-blue-400 mr-2">•</span>
+                      <span><strong>Monopole:</strong> Single point-energy particle</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-red-400 mr-2">•</span>
+                      <span><strong>Dipole:</strong> Paired particles with opposite spin</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-400 mr-2">•</span>
+                      <span><strong>Möbius Twist:</strong> Creates attraction/repulsion zones</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-yellow-400 mr-2">•</span>
+                      <span><strong>Probability Field:</strong> 3D space of possible locations</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-gray-800 p-6 rounded-lg">
+                  <h4 className="text-xl font-bold mb-4 text-orange-400">Theoretical Implications</h4>
+                  <p className="text-sm text-gray-300">
+                    This model suggests that fundamental forces like gravity and electromagnetism 
+                    might emerge from the interaction of these branic vector fields, rather than 
+                    being fundamental forces themselves.
+                  </p>
                 </div>
               </div>
-
-              <div className="text-center mb-8">
-                <Image
-                  src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/M2"
-                  alt="M2 Möbius configuration"
-                  width={400}
-                  height={400}
-                  className="rounded-lg mx-auto mb-4"
-                />
-                <p className="text-sm text-gray-400">M2 Möbius Configuration</p>
-              </div>
             </div>
-
-            <p className="text-gray-300 italic">
-              I don't know, it's a working postulate. Also kinda looks like a sand dollar. lol O_o The hairs should have more spiral spin to it and trail around a ways before snapping back as there's balancing forces between the centrifugal force and the vibration of the point energy, but I couldn't get the A.I. to paint it exactly how I see it. This of course is all theoretical musings and I can play around with the parameters to see what works.
-            </p>
-
-            <p className="text-gray-300 italic">
-              It's like building model trains but instead of trains it's trying... nevermind... lol O_o
-            </p>
           </div>
 
           <div className="mt-12 pt-8 border-t border-gray-700">
