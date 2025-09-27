@@ -37,16 +37,26 @@ export default function Navigation() {
             >
               Single Object
             </Link>
-            <Link 
-              href="/dual-objects" 
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                pathname === '/dual-objects' 
-                  ? 'bg-gray-800 text-white' 
-                  : 'text-gray-300 hover:text-white hover:bg-gray-700'
-              }`}
-            >
-              Dual Objects
-            </Link>
+        <Link
+          href="/dual-objects"
+          className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+            pathname === '/dual-objects'
+              ? 'bg-gray-800 text-white'
+              : 'text-gray-300 hover:text-white hover:bg-gray-700'
+          }`}
+        >
+          Dual Objects
+        </Link>
+        <Link
+          href="/blog"
+          className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+            pathname === '/blog'
+              ? 'bg-gray-800 text-white'
+              : 'text-gray-300 hover:text-white hover:bg-gray-700'
+          }`}
+        >
+          Blog
+        </Link>
           </div>
         </div>
       </div>

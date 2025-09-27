@@ -5,12 +5,17 @@ MBranicSystems/
 │   ├── page.tsx
 │   ├── visualization/
 │   │   └── page.tsx
-│   └── dual-objects/
+│   ├── dual-objects/
+│   │   └── page.tsx
+│   └── blog/
 │       └── page.tsx
 ├── components/
 │   ├── Navigation.tsx
 │   ├── TwistedCenterTorusVectorField.tsx
 │   └── DualObjectTwistedTorus.tsx
+├── public/
+│   └── images/
+│       └── README.md
 ├── package.json
 ├── next.config.js
 ├── tailwind.config.js
