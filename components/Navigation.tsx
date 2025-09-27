@@ -48,16 +48,6 @@ export default function Navigation() {
           Dual Objects
         </Link>
         <Link
-          href="/dual-objects-3d"
-          className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-            pathname === '/dual-objects-3d'
-              ? 'bg-gray-800 text-white'
-              : 'text-gray-300 hover:text-white hover:bg-gray-700'
-          }`}
-        >
-          3D Objects
-        </Link>
-        <Link
           href="/blog"
           className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
             pathname === '/blog'
