@@ -3,6 +3,11 @@ import DualToriPointEnergySystem from '@/components/DualToriPointEnergySystem';
 export default function DualObjectsPage() {
   return (
     <div className="min-h-screen bg-gray-900">
+      {/* Under Construction Banner */}
+      <div className="bg-yellow-600 text-black py-3 px-4 text-center font-bold text-lg">
+        🚧 UNDER CONSTRUCTION - Animation Currently Broken 🚧
+      </div>
+      
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-white mb-8 text-center">
           Dual Tori Point Energy System
