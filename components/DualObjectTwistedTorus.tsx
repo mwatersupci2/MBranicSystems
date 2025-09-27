@@ -143,17 +143,18 @@ const DualMobiusTori = () => {
       return prob;
     };
 
-    /* ------------  draw 3D torus with visible grid and solid surface  ------------ */
+    /* ------------  draw torus as probability field of point particle vectors  ------------ */
     const drawTorus = (torus: any) => {
-      // 3D rendering parameters
-      const resolution = 24;
+      // The torus represents all possible vectors/paths of the point particle
+      // Draw it as a probability field rather than a solid shell
+      
+      const resolution = 20;
       const cameraDistance = 400;
       const fov = 60;
       
-      // Generate 3D mesh points
-      const mesh = [];
+      // Generate probability field points
+      const fieldPoints = [];
       for (let phi = 0; phi < 2 * Math.PI; phi += 2 * Math.PI / resolution) {
-        const phiRow = [];
         for (let theta = 0; theta < 2 * Math.PI; theta += 2 * Math.PI / resolution) {
           // Calculate 3D coordinates in world space
           const twistAngle = torus.twist * phi / 2;
@@ -184,7 +185,10 @@ const DualMobiusTori = () => {
           const x2d = torus.centreX + x3dRot * scale;
           const y2d = g.yCtr + y3d * scale;
           
-          phiRow.push({
+          // Calculate probability at this point
+          const prob = calcProb(phi, theta, g.r, torus.obj.phi, torus.obj.theta, torus.obj.rCtr, torus);
+          
+          fieldPoints.push({
             x: x2d,
             y: y2d,
             z: z3dRot,
@@ -192,125 +196,43 @@ const DualMobiusTori = () => {
             y3d: y3d,
             z3d: z3d,
             phi: phi,
-            theta: theta
-          });
-        }
-        mesh.push(phiRow);
-      }
-      
-      // Create triangles and sort by depth
-      const triangles = [];
-      
-      for (let i = 0; i < mesh.length - 1; i++) {
-        for (let j = 0; j < mesh[i].length - 1; j++) {
-          const p1 = mesh[i][j];
-          const p2 = mesh[i + 1][j];
-          const p3 = mesh[i][j + 1];
-          const p4 = mesh[i + 1][j + 1];
-          
-          // Create two triangles per quad
-          triangles.push({
-            points: [p1, p2, p3],
-            avgZ: (p1.z + p2.z + p3.z) / 3
-          });
-          triangles.push({
-            points: [p2, p4, p3],
-            avgZ: (p2.z + p4.z + p3.z) / 3
+            theta: theta,
+            probability: prob
           });
         }
       }
       
-      // Sort triangles by depth (back to front)
-      triangles.sort((a, b) => b.avgZ - a.avgZ);
+      // Sort by depth for proper rendering
+      fieldPoints.sort((a, b) => b.z - a.z);
       
-      // Draw solid surface with 3D shading
-      triangles.forEach(triangle => {
-        const [p1, p2, p3] = triangle.points;
+      // Draw probability field as translucent points
+      fieldPoints.forEach(point => {
+        const alpha = Math.max(0.1, point.probability * 0.8);
+        const size = Math.max(1, point.probability * 4);
         
-        // Calculate surface normal using 3D coordinates
-        const v1 = { x: p2.x3d - p1.x3d, y: p2.y3d - p1.y3d, z: p2.z3d - p1.z3d };
-        const v2 = { x: p3.x3d - p1.x3d, y: p3.y3d - p1.y3d, z: p3.z3d - p1.z3d };
-        const normal = {
-          x: v1.y * v2.z - v1.z * v2.y,
-          y: v1.z * v2.x - v1.x * v2.z,
-          z: v1.x * v2.y - v1.y * v2.x
-        };
-        
-        // Normalize normal
-        const length = Math.sqrt(normal.x * normal.x + normal.y * normal.y + normal.z * normal.z);
-        if (length > 0) {
-          normal.x /= length;
-          normal.y /= length;
-          normal.z /= length;
-        }
-        
-        // 3D lighting calculation
-        const lightDir = { x: 0.5, y: 0.5, z: 1 };
-        const dot = Math.max(0, normal.x * lightDir.x + normal.y * lightDir.y + normal.z * lightDir.z);
-        
-        // Depth-based shading
-        const depthFactor = Math.max(0.3, (triangle.avgZ + 200) / 400);
-        const intensity = dot * depthFactor;
-        
-        // Color based on torus side
+        // Color based on torus side and probability
         const baseColor = torus.side === 'L' ? 
           { r: 68, g: 136, b: 255 } : 
           { r: 255, g: 68, b: 68 };
         
+        // Depth-based brightness
+        const depthFactor = Math.max(0.3, (point.z + 200) / 400);
+        const brightness = depthFactor * point.probability;
+        
         const color = {
-          r: Math.floor(baseColor.r * intensity),
-          g: Math.floor(baseColor.g * intensity),
-          b: Math.floor(baseColor.b * intensity)
+          r: Math.floor(baseColor.r * brightness),
+          g: Math.floor(baseColor.g * brightness),
+          b: Math.floor(baseColor.b * brightness)
         };
         
-        // Draw solid triangle
-        ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, 0.9)`;
+        // Draw probability point
+        ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
         ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        ctx.lineTo(p3.x, p3.y);
-        ctx.closePath();
+        ctx.arc(point.x, point.y, size, 0, 2 * Math.PI);
         ctx.fill();
       });
       
-      // Draw visible grid lines for 3D structure
-      ctx.strokeStyle = torus.side === 'L' ? '#2244aa' : '#aa2244';
-      ctx.lineWidth = 1;
-      ctx.globalAlpha = 0.6;
-      
-      // Draw phi lines (major circles)
-      for (let i = 0; i < mesh.length; i += 2) {
-        ctx.beginPath();
-        let first = true;
-        for (let j = 0; j < mesh[i].length; j++) {
-          const point = mesh[i][j];
-          if (first) {
-            ctx.moveTo(point.x, point.y);
-            first = false;
-          } else {
-            ctx.lineTo(point.x, point.y);
-          }
-        }
-        ctx.stroke();
-      }
-      
-      // Draw theta lines (minor circles)
-      for (let j = 0; j < mesh[0].length; j += 2) {
-        ctx.beginPath();
-        let first = true;
-        for (let i = 0; i < mesh.length; i++) {
-          const point = mesh[i][j];
-          if (first) {
-            ctx.moveTo(point.x, point.y);
-            first = false;
-          } else {
-            ctx.lineTo(point.x, point.y);
-          }
-        }
-        ctx.stroke();
-      }
-      
-      // Draw center ring with twist
+      // Draw center ring with twist (the most probable path)
       ctx.strokeStyle = torus.cCol;
       ctx.lineWidth = 3;
       ctx.globalAlpha = 0.9;
