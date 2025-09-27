@@ -54,18 +54,18 @@ export default function BlogPage() {
                   However in the rudimentary emergent system, if we take the torus and give it a center twist where the vector becomes a Möbius strip instead of a loop then what you end up with is at some points in the Möbius field you have normal interactions (repulsion) and when it flips around and inverts you have anti-normal collisions (attraction).
                 </p>
 
-                {/* Left Panel - Electron Orbitals Reference */}
+                {/* Left Panel - Möbius Strip Configuration */}
                 <div className="float-left mr-6 mb-6 w-64 md:w-80">
                   <Image
-                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/M2"
-                    alt="Electron probability distributions for 1s, 2s, and 3s atomic orbitals"
+                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/Dipole.png"
+                    alt="Möbius strip configuration showing twisted geometry"
                     width={320}
                     height={320}
                     className="rounded-lg shadow-lg"
                   />
                   <p className="text-center text-sm text-gray-400 mt-2 italic">
-                    Electron Probability Distributions<br/>
-                    <span className="text-xs">1s, 2s, and 3s atomic orbitals</span>
+                    Möbius Strip Configuration<br/>
+                    <span className="text-xs">Twisted geometry with center twist</span>
                   </p>
                 </div>
 
