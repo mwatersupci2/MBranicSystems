@@ -87,7 +87,7 @@ export default function BlogPage() {
                 <div className="bg-gray-800 p-6 rounded-lg">
                   <h4 className="text-xl font-bold mb-4 text-blue-400">Electron Probability Reference</h4>
                   <Image
-                    src="/images/electron-probability-orbitals.jpg"
+                    src="https://wxgzrhzbhz6yju6a.public.blob.vercel-storage.com/M2"
                     alt="Scientific diagram showing electron probability distributions for 1s, 2s, and 3s atomic orbitals"
                     width={400}
                     height={300}
